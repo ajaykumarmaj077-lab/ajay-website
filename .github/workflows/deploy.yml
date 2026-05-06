@@ -1,4 +1,4 @@
-name: Docker Compose Deploy
+name: Docker CI/CD Deploy
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Deploy to EC2
+      - name: Deploy to EC2 via SSH
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: 13.201.190.104
