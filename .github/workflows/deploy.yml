@@ -1,4 +1,4 @@
-name: Docker CI/CD Deploy
+name: Docker Compose Deploy
 
 on:
   push:
@@ -11,22 +11,22 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Deploy to EC2 via SSH
+      - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: 13.201.190.104
           username: ec2-user
           key: ${{ secrets.EC2_KEY }}
           script: |
-  cd /var/www/html
+            cd /var/www/html
 
-  echo "📥 Pull latest code"
-  git pull origin main
+            echo "📥 Pull latest code"
+            git pull origin main
 
-  echo "🛑 Stop containers"
-  docker compose down
+            echo "🛑 Stop containers"
+            docker compose down
 
-  echo "🚀 Start containers"
-  docker compose up -d
+            echo "🚀 Start containers"
+            docker compose up -d
