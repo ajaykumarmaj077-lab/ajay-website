@@ -21,9 +21,6 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
           script: |
             cd /var/www/html
-
             git pull origin main
-
             docker compose down
-
             docker compose up -d
